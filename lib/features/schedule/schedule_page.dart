@@ -75,7 +75,7 @@ class _SchedulePageState extends State<SchedulePage> {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.primary.withOpacity(0.1),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -93,7 +93,7 @@ class _SchedulePageState extends State<SchedulePage> {
             Text(
               _getDateRangeText(),
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ],
@@ -269,7 +269,7 @@ class _SchedulePageState extends State<SchedulePage> {
                         color: isSelected
                             ? theme.colorScheme.primaryContainer
                             : isToday
-                            ? theme.colorScheme.primary.withOpacity(0.1)
+                            ? theme.colorScheme.primary.withValues(alpha: 0.1)
                             : null,
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -280,8 +280,8 @@ class _SchedulePageState extends State<SchedulePage> {
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: isSelected || isToday
                                   ? theme.colorScheme.primary
-                                  : theme.colorScheme.onSurface.withOpacity(
-                                      0.6,
+                                  : theme.colorScheme.onSurface.withValues(
+                                      alpha: 0.6,
                                     ),
                               fontWeight: FontWeight.w600,
                             ),
@@ -338,7 +338,7 @@ class _SchedulePageState extends State<SchedulePage> {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: theme.colorScheme.outline.withOpacity(0.1),
+                color: theme.colorScheme.outline.withValues(alpha: 0.1),
                 width: 1,
               ),
             ),
@@ -352,7 +352,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 child: Text(
                   '${hour.toString().padLeft(2, '0')}:00',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ),
@@ -365,7 +365,9 @@ class _SchedulePageState extends State<SchedulePage> {
                     decoration: BoxDecoration(
                       border: Border(
                         right: BorderSide(
-                          color: theme.colorScheme.outline.withOpacity(0.1),
+                          color: theme.colorScheme.outline.withValues(
+                            alpha: 0.1,
+                          ),
                           width: 1,
                         ),
                       ),
@@ -441,9 +443,9 @@ class _SchedulePageState extends State<SchedulePage> {
       child: Container(
         margin: const EdgeInsets.all(1),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(4),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
         ),
         child: InkWell(
           onTap: () => _showEventDetails(context, event),
@@ -478,7 +480,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     event['location'],
                     style: theme.textTheme.bodySmall?.copyWith(
                       fontSize: 9,
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -572,7 +574,7 @@ class _SchedulePageState extends State<SchedulePage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -633,7 +635,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   Text(
                     event['endTime'],
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
                 ],
@@ -656,7 +658,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 Expanded(
                   child: Container(
                     width: 2,
-                    color: theme.colorScheme.outline.withOpacity(0.3),
+                    color: theme.colorScheme.outline.withValues(alpha: 0.3),
                   ),
                 ),
               ],
@@ -669,9 +671,9 @@ class _SchedulePageState extends State<SchedulePage> {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.05),
+                  color: color.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: color.withOpacity(0.2)),
+                  border: Border.all(color: color.withValues(alpha: 0.2)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -684,7 +686,7 @@ class _SchedulePageState extends State<SchedulePage> {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: color.withOpacity(0.2),
+                            color: color.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -720,7 +722,9 @@ class _SchedulePageState extends State<SchedulePage> {
                       Text(
                         event['description'],
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.7,
+                          ),
                         ),
                       ),
                     ],
@@ -731,14 +735,16 @@ class _SchedulePageState extends State<SchedulePage> {
                           Icon(
                             Icons.location_on,
                             size: 14,
-                            color: theme.colorScheme.onSurface.withOpacity(0.6),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.6,
+                            ),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             event['location'],
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(
-                                0.6,
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.6,
                               ),
                             ),
                           ),
@@ -747,7 +753,9 @@ class _SchedulePageState extends State<SchedulePage> {
                         Text(
                           '${event['duration']}',
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurface.withOpacity(0.6),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.6,
+                            ),
                           ),
                         ),
                       ],
@@ -794,7 +802,9 @@ class _SchedulePageState extends State<SchedulePage> {
                         day,
                         style: theme.textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.6,
+                          ),
                         ),
                       ),
                     ),
@@ -831,8 +841,12 @@ class _SchedulePageState extends State<SchedulePage> {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: theme.colorScheme.outline.withOpacity(0.1)),
-        color: isToday ? theme.colorScheme.primary.withOpacity(0.1) : null,
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.1),
+        ),
+        color: isToday
+            ? theme.colorScheme.primary.withValues(alpha: 0.1)
+            : null,
       ),
       child: InkWell(
         onTap: () {
@@ -854,7 +868,7 @@ class _SchedulePageState extends State<SchedulePage> {
                       ? (isToday
                             ? theme.colorScheme.primary
                             : theme.colorScheme.onSurface)
-                      : theme.colorScheme.onSurface.withOpacity(0.3),
+                      : theme.colorScheme.onSurface.withValues(alpha: 0.3),
                 ),
               ),
               const SizedBox(height: 2),
@@ -878,7 +892,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   '+${events.length - 3} more',
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 8,
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
             ],
@@ -945,9 +959,9 @@ class _SchedulePageState extends State<SchedulePage> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.05),
+        color: color.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -973,7 +987,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 Text(
                   '${event['startTime']} - ${event['duration']}',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ],
@@ -1015,9 +1029,9 @@ class _SchedulePageState extends State<SchedulePage> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.05),
+                color: Colors.green.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.green.withOpacity(0.2)),
+                border: Border.all(color: Colors.green.withValues(alpha: 0.2)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1072,7 +1086,9 @@ class _SchedulePageState extends State<SchedulePage> {
                     Text(
                       'Free today',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.6,
+                        ),
                       ),
                     ),
                   ],
@@ -1090,7 +1106,9 @@ class _SchedulePageState extends State<SchedulePage> {
                     Text(
                       'Tasks pending',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.6,
+                        ),
                       ),
                     ),
                   ],
@@ -1142,7 +1160,7 @@ class _SchedulePageState extends State<SchedulePage> {
           width: 32,
           height: 32,
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
@@ -1164,7 +1182,7 @@ class _SchedulePageState extends State<SchedulePage> {
               Text(
                 label,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
             ],

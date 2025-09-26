@@ -77,7 +77,7 @@ class _TaskListPageState extends State<TaskListPage>
             Text(
               '12 active tasks, 3 due today',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ],
@@ -133,7 +133,7 @@ class _TaskListPageState extends State<TaskListPage>
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: theme.colorScheme.background,
+                fillColor: theme.colorScheme.surface,
               ),
             ),
 
@@ -177,7 +177,7 @@ class _TaskListPageState extends State<TaskListPage>
                   Container(
                     width: 1,
                     height: 32,
-                    color: theme.colorScheme.outline.withOpacity(0.3),
+                    color: theme.colorScheme.outline.withValues(alpha: 0.3),
                   ),
 
                   const SizedBox(width: 16),
@@ -198,7 +198,7 @@ class _TaskListPageState extends State<TaskListPage>
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: theme.colorScheme.outline.withOpacity(0.3),
+                        color: theme.colorScheme.outline.withValues(alpha: 0.3),
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -298,7 +298,9 @@ class _TaskListPageState extends State<TaskListPage>
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: theme.colorScheme.outline.withOpacity(0.2)),
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
+        ),
       ),
       child: TabBar(
         controller: _tabController,
@@ -309,7 +311,9 @@ class _TaskListPageState extends State<TaskListPage>
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         labelColor: theme.colorScheme.onPrimary,
-        unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.7),
+        unselectedLabelColor: theme.colorScheme.onSurface.withValues(
+          alpha: 0.7,
+        ),
         tabs: const [
           Tab(text: 'All Tasks'),
           Tab(text: 'Today'),
@@ -361,20 +365,20 @@ class _TaskListPageState extends State<TaskListPage>
           Icon(
             Icons.assignment_outlined,
             size: 64,
-            color: theme.colorScheme.outline.withOpacity(0.5),
+            color: theme.colorScheme.outline.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 16),
           Text(
             'No tasks found',
             style: theme.textTheme.titleLarge?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.5),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Create your first task to get started',
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.5),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
             ),
           ),
           const SizedBox(height: 24),
@@ -458,7 +462,9 @@ class _TaskListPageState extends State<TaskListPage>
                                 ? TextDecoration.lineThrough
                                 : null,
                             color: task['completed']
-                                ? theme.colorScheme.onSurface.withOpacity(0.6)
+                                ? theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.6,
+                                  )
                                 : null,
                           ),
                         ),
@@ -471,7 +477,7 @@ class _TaskListPageState extends State<TaskListPage>
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: getSubjectColor().withOpacity(0.1),
+                                color: getSubjectColor().withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -489,7 +495,9 @@ class _TaskListPageState extends State<TaskListPage>
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: getPriorityColor().withOpacity(0.1),
+                                color: getPriorityColor().withValues(
+                                  alpha: 0.1,
+                                ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -541,7 +549,7 @@ class _TaskListPageState extends State<TaskListPage>
                 Text(
                   task['description'],
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -574,13 +582,13 @@ class _TaskListPageState extends State<TaskListPage>
                   Icon(
                     Icons.timer_outlined,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                   const SizedBox(width: 4),
                   Text(
                     task['estimatedTime'],
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
 
@@ -602,8 +610,8 @@ class _TaskListPageState extends State<TaskListPage>
                       child: LinearProgressIndicator(
                         value:
                             task['completedSubtasks'] / task['totalSubtasks'],
-                        backgroundColor: theme.colorScheme.outline.withOpacity(
-                          0.2,
+                        backgroundColor: theme.colorScheme.outline.withValues(
+                          alpha: 0.2,
                         ),
                         valueColor: AlwaysStoppedAnimation<Color>(
                           theme.colorScheme.primary,
@@ -620,9 +628,11 @@ class _TaskListPageState extends State<TaskListPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.05),
+                    color: Colors.green.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: Colors.green.withOpacity(0.2)),
+                    border: Border.all(
+                      color: Colors.green.withValues(alpha: 0.2),
+                    ),
                   ),
                   child: Row(
                     children: [
