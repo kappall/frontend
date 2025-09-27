@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/auth/login_page.dart';
 import 'package:frontend/models/user.dart';
 import 'package:frontend/services/apiClient.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +25,6 @@ class _SignupPageState extends State<SignupPage> {
   String? _errorMessage;
   String _selectedTimezone = 'Europe/Rome';
 
-  // Common timezones for students
   final List<String> _timezones = [
     'Europe/Rome',
     'Europe/London',
@@ -78,33 +76,26 @@ class _SignupPageState extends State<SignupPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo and title
                     _buildHeader(context),
                     const SizedBox(height: 32),
 
-                    // Signup form
                     _buildSignupForm(context),
                     const SizedBox(height: 24),
 
-                    // Terms checkbox
                     _buildTermsCheckbox(context),
                     const SizedBox(height: 24),
 
-                    // Signup button
                     _buildSignupButton(context),
                     const SizedBox(height: 16),
 
-                    // Error message
                     if (_errorMessage != null) ...[
                       _buildErrorMessage(context),
                       const SizedBox(height: 16),
                     ],
 
-                    // Divider
                     _buildDivider(context),
                     const SizedBox(height: 24),
 
-                    // Login link
                     _buildLoginLink(context),
                   ],
                 ),
@@ -179,7 +170,6 @@ class _SignupPageState extends State<SignupPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Email field
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -206,7 +196,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 16),
 
-              // Display name field
               TextFormField(
                 controller: _displayNameController,
                 textInputAction: TextInputAction.next,
@@ -228,9 +217,8 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 16),
 
-              // Timezone selector
               DropdownButtonFormField<String>(
-                value: _selectedTimezone,
+                initialValue: _selectedTimezone,
                 decoration: InputDecoration(
                   labelText: 'Timezone',
                   prefixIcon: const Icon(Icons.schedule),
@@ -252,7 +240,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 16),
 
-              // Password field
               TextFormField(
                 controller: _passwordController,
                 obscureText: _obscurePassword,
@@ -294,7 +281,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 16),
 
-              // Confirm password field
               TextFormField(
                 controller: _confirmPasswordController,
                 obscureText: _obscureConfirmPassword,

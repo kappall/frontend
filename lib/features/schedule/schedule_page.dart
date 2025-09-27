@@ -553,7 +553,6 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   Widget _buildDayStats(BuildContext context) {
-    final theme = Theme.of(context);
     final events = _getDayEvents(_selectedDate);
     final classCount = events.where((e) => e['type'] == 'class').length;
     final studyCount = events.where((e) => e['type'] == 'study').length;

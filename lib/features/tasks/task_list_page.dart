@@ -29,8 +29,6 @@ class _TaskListPageState extends State<TaskListPage>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -676,8 +674,9 @@ class _TaskListPageState extends State<TaskListPage>
   Color _getDueDateColor(String dueDate) {
     // Parse due date and determine urgency color
     if (dueDate.contains('overdue')) return Colors.red;
-    if (dueDate.contains('today') || dueDate.contains('tomorrow'))
+    if (dueDate.contains('today') || dueDate.contains('tomorrow')) {
       return Colors.orange;
+    }
     return Colors.grey;
   }
 
