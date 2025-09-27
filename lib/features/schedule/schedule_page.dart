@@ -7,46 +7,39 @@ class SchedulePage extends StatefulWidget {
   State<SchedulePage> createState() => _SchedulePageState();
 }
 
-class _SchedulePageState extends State<SchedulePage>
-    with AutomaticKeepAliveClientMixin {
+class _SchedulePageState extends State<SchedulePage> {
   DateTime _selectedDate = DateTime.now();
   String _viewMode = 'week'; // 'week', 'day', 'month'
   bool _showFreeTimeSlots = true;
   bool _showCompletedTasks = false;
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Header with controls
-        _buildHeader(context),
-        const SizedBox(height: 24),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 24),
 
-        // View controls and filters
-        _buildViewControls(context),
-        const SizedBox(height: 24),
+          _buildViewControls(context),
+          const SizedBox(height: 24),
 
-        // Main schedule view
-        Expanded(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Main calendar/schedule view
-              Expanded(flex: 3, child: _buildScheduleView(context)),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 3, child: _buildScheduleView(context)),
 
-              const SizedBox(width: 24),
+                const SizedBox(width: 24),
 
-              // Right sidebar with details and actions
-              Expanded(flex: 1, child: _buildSidebar(context)),
-            ],
+                Expanded(flex: 1, child: _buildSidebar(context)),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

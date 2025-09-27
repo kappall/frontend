@@ -12,16 +12,12 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     final nav = Provider.of<AppState>(context, listen: false);
     return SingleChildScrollView(
+      padding: EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

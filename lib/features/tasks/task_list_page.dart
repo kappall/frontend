@@ -8,7 +8,7 @@ class TaskListPage extends StatefulWidget {
 }
 
 class _TaskListPageState extends State<TaskListPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin {
   late TabController _tabController;
   String _selectedFilter = 'all';
   String _selectedSort = 'due_date';
@@ -19,7 +19,6 @@ class _TaskListPageState extends State<TaskListPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
-    print('🔥 TasksPage initState called');
   }
 
   @override
@@ -29,35 +28,34 @@ class _TaskListPageState extends State<TaskListPage>
   }
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 24),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 24),
 
-        _buildFiltersAndSearch(context),
-        const SizedBox(height: 24),
+          _buildFiltersAndSearch(context),
+          const SizedBox(height: 24),
 
-        _buildTabBar(context),
-        const SizedBox(height: 16),
+          _buildTabBar(context),
+          const SizedBox(height: 16),
 
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              _buildAllTasksView(context),
-              _buildTodayTasksView(context),
-              _buildUpcomingTasksView(context),
-              _buildCompletedTasksView(context),
-            ],
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildAllTasksView(context),
+                _buildTodayTasksView(context),
+                _buildUpcomingTasksView(context),
+                _buildCompletedTasksView(context),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
