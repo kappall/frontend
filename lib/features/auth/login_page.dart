@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/services/apiClient.dart';
+import 'package:frontend/services/api_client.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,11 +13,27 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final apiClient = ApiClient();
 
   bool _isLoading = false;
   bool _obscurePassword = true;
   String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkExistingLogin();
+  }
+
+  Future<void> _checkExistingLogin() async {
+    if (await ApiClient.hasToken()) {
+      try {
+        final user = await ApiClient.getUser();
+        if (user != null) {
+          GoRouter.of(context).pushNamed('/app');
+        }
+      } catch (e) {}
+    }
+  }
 
   @override
   void dispose() {
@@ -363,7 +379,7 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      await apiClient.login(
+      await ApiClient.login(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );

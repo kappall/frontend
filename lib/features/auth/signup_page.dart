@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/models/user.dart';
-import 'package:frontend/services/apiClient.dart';
+import 'package:frontend/services/api_client.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
@@ -16,7 +16,6 @@ class _SignupPageState extends State<SignupPage> {
   final _displayNameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  final apiClient = ApiClient();
 
   bool _isLoading = false;
   bool _obscurePassword = true;
@@ -69,35 +68,41 @@ class _SignupPageState extends State<SignupPage> {
         ),
         child: SafeArea(
           child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 400),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildHeader(context),
-                    const SizedBox(height: 32),
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(
+                context,
+              ).copyWith(scrollbars: false),
 
-                    _buildSignupForm(context),
-                    const SizedBox(height: 24),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildHeader(context),
+                      const SizedBox(height: 32),
 
-                    _buildTermsCheckbox(context),
-                    const SizedBox(height: 24),
+                      _buildSignupForm(context),
+                      const SizedBox(height: 24),
 
-                    _buildSignupButton(context),
-                    const SizedBox(height: 16),
+                      _buildTermsCheckbox(context),
+                      const SizedBox(height: 24),
 
-                    if (_errorMessage != null) ...[
-                      _buildErrorMessage(context),
+                      _buildSignupButton(context),
                       const SizedBox(height: 16),
+
+                      if (_errorMessage != null) ...[
+                        _buildErrorMessage(context),
+                        const SizedBox(height: 16),
+                      ],
+
+                      _buildDivider(context),
+                      const SizedBox(height: 24),
+
+                      _buildLoginLink(context),
                     ],
-
-                    _buildDivider(context),
-                    const SizedBox(height: 24),
-
-                    _buildLoginLink(context),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -201,8 +206,8 @@ class _SignupPageState extends State<SignupPage> {
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
-                  labelText: 'Name',
-                  hintText: 'Enter your full name or a nickname',
+                  labelText: 'Name *',
+                  hintText: 'Enter the name you want to display',
                   prefixIcon: const Icon(Icons.person_outlined),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -552,7 +557,7 @@ class _SignupPageState extends State<SignupPage> {
       final password = _passwordController.text.trim();
       final timezone = _selectedTimezone;
 
-      final res = await apiClient.signup(
+      final res = await ApiClient.signup(
         User(
           email: email,
           displayName: displayName,
