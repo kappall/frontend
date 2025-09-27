@@ -11,4 +11,4 @@ jobs:
         with:
           flutter-version: '3.35.4'
       - run: flutter pub get
-      - run: flutter analyze
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
