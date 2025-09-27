@@ -8,7 +8,7 @@ class TaskListPage extends StatefulWidget {
 }
 
 class _TaskListPageState extends State<TaskListPage>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late TabController _tabController;
   String _selectedFilter = 'all';
   String _selectedSort = 'due_date';
@@ -19,6 +19,7 @@ class _TaskListPageState extends State<TaskListPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    print('🔥 TasksPage initState called');
   }
 
   @override
@@ -28,7 +29,11 @@ class _TaskListPageState extends State<TaskListPage>
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

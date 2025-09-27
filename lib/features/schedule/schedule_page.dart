@@ -7,14 +7,19 @@ class SchedulePage extends StatefulWidget {
   State<SchedulePage> createState() => _SchedulePageState();
 }
 
-class _SchedulePageState extends State<SchedulePage> {
+class _SchedulePageState extends State<SchedulePage>
+    with AutomaticKeepAliveClientMixin {
   DateTime _selectedDate = DateTime.now();
   String _viewMode = 'week'; // 'week', 'day', 'month'
   bool _showFreeTimeSlots = true;
   bool _showCompletedTasks = false;
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

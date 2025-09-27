@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/features/main_layout.dart';
 import 'package:frontend/models/summary.dart';
 import 'package:frontend/models/user.dart';
-import 'package:frontend/services/apiClient.dart';
+import 'package:frontend/services/api_client.dart';
+import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -10,11 +12,15 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
-  final apiClient = ApiClient();
+class _DashboardPageState extends State<DashboardPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    final nav = Provider.of<AppState>(context, listen: false);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +38,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 flex: 2,
                 child: Column(
                   children: [
-                    _buildTodaySchedule(context),
+                    _buildTodaySchedule(context, nav),
                     const SizedBox(height: 24),
                     _buildUpcomingTasks(context),
                   ],
@@ -70,7 +76,7 @@ class _DashboardPageState extends State<DashboardPage> {
         : 'evening';
 
     return FutureBuilder<User?>(
-      future: apiClient.getUser(),
+      future: ApiClient.getUser(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -107,15 +113,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           color: theme.colorScheme.onSurface,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'You have 3 tasks due today and 2 hours of free time available',
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: theme.colorScheme.onSurface.withValues(
-                            alpha: 0.7,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -141,7 +138,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget _buildQuickStats(BuildContext context) {
     return FutureBuilder<Summary>(
-      future: apiClient.getSummary(),
+      future: ApiClient.getSummary(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -247,7 +244,7 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget _buildTodaySchedule(BuildContext context) {
+  Widget _buildTodaySchedule(BuildContext context, AppState nav) {
     final theme = Theme.of(context);
 
     return Card(
@@ -266,7 +263,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () => {},
                   icon: const Icon(Icons.calendar_month, size: 16),
                   label: const Text('View Full Calendar'),
                 ),
