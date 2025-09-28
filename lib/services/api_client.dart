@@ -94,8 +94,22 @@ class ApiClient {
   }
 
   // DASHBOARD METHODS
-  static Future<Summary> getSummary() async {
-    final response = await get('/dashboard/summary');
+  static Future<Summary> getSummary({
+    DateTime? from,
+    DateTime? to,
+    String? granularity, // "day", "week", "month"
+  }) async {
+    final params = <String, String>{};
+
+    if (from != null && to != null) {
+      params['from'] = from.toIso8601String();
+      params['to'] = to.toIso8601String();
+    }
+    if (granularity != null) {
+      params['granularity'] = granularity;
+    }
+
+    final response = await get('/dashboard/summary', queryParameters: params);
 
     if (response.statusCode == 200) {
       return Summary.fromJson(response.data);
