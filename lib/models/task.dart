@@ -46,4 +46,17 @@ class Task {
     "priority": priority,
     "status": status,
   };
+
+  String getPriorityString() {
+    switch (priority) {
+      case 0:
+        return "low";
+      case 1:
+        return "medium";
+      case 2:
+        return "high";
+      default:
+        return "low";
+    }
+  }
 }
